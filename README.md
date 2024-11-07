@@ -17,3 +17,6 @@ pip install -r requirements.txt --no-deps
 3. Download the pre-trained GPT-2 model and save as ./gpt2  
 4. run training code from step1 to step4.
 
+## Acknowledgments
+
+This repo benefits from [DT](https://github.com/kzl/decision-transformer) and [InstructEval](https://github.com/princeton-nlp/InstructEval). Thanks for their wonderful works!
