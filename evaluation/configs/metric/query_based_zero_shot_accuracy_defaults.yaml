@@ -1,0 +1,2 @@
+query_based_zero_shot_accuracy:
+  num_test_instances: 100

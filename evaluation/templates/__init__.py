@@ -1,0 +1,5 @@
+from evaluation.templates.few_shot_template import FewShotTemplate
+from evaluation.templates.instruction_based_fs_template import \
+    InstructionBasedFewShotTemplate
+from evaluation.templates.query_based_few_shot_template import QueryBasedFewShotTemplate
+from evaluation.templates.query_based_instruction_based_fs_template import QueryBasedInstructionBasedFewShotTemplate
