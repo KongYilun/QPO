@@ -86,8 +86,8 @@ def evaluate(model, dataset, dataset_name, target_model, rtg, args):
         if dataset.name=='svamp':
             q_k,a_k='question_concat','Answer'
             eval_func=svamp_eval_per_instance
-        os.environ["OPENAI_API_KEY"] ='sk-s8EP6hcfaUISwSjKFZY5xFLUKMEC1dvFXqBcS6ica1qEjPE1'
-        os.environ["OPENAI_BASE_URL"] = "https://xiaoai.plus/v1"
+        os.environ["OPENAI_API_KEY"] ='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+        # os.environ["OPENAI_BASE_URL"] = "https://xiaoai.plus/v1"
         client = OpenAI()
         avg_list=[]
         results=[]

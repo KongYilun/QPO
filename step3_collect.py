@@ -102,17 +102,14 @@ def collect(args):
         instruction_list=[''.join(sublist).strip() for sublist in instruction]
         instruction_list=[instruct.replace('<|endoftext|>','') for instruct in instruction_list]
 
-        q.extend(querys)
-        p.extend(instruction_list)
-        continue
 
         if nlp_dataset.name=='gsm8k' or nlp_dataset.name=='svamp':
             if nlp_dataset.name=='gsm8k':
                 q_k,a_k='question','answer'
             if nlp_dataset.name=='svamp':
                 q_k,a_k='question_concat','Answer'
-            os.environ["OPENAI_API_KEY"] ='sk-uINRZAXtNohaulzOC6C46294B81341Df862b5fD8C85325D9'
-            os.environ["OPENAI_BASE_URL"] = "https://xiaoai.plus/v1"
+            os.environ["OPENAI_API_KEY"] ='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+            # os.environ["OPENAI_BASE_URL"] = "https://xiaoai.plus/v1"
             print(os.environ["OPENAI_BASE_URL"])
             client = OpenAI()
             avg_list=[]
@@ -213,20 +210,9 @@ def collect(args):
                 elif args.metric=='few_shot':
                     log_dict[f'{args.target_model}']['few_shot_accuracy']=fsa_results['per_instance_few_shot_accuracies'][t]
                     log_dict[f'{args.target_model}']['few_shot_avg_acc']=fsa_results['few_shot_accuracy']
-                    # log_dict[f'{args.model}']['few_shot_accuracy']=pa_results['per_instance_unperturbed_few_shot_accuracy'][t]                ###对每个query，对30个demo组合取平均，体现query-conditioned
-                    # log_dict[f'{args.model}']['few_shot_perturbed_accuracy']=pa_results['per_instance_perturbed_few_shot_accuracy'][t]        ###对每个query，对30个demo组合取平均，体现query-conditioned
-                    # log_dict[f'{args.model}']['few_shot_perturbation_accuracy_drop']=pa_results['per_instance_perturbation_drop_in_few_shot_accuracy'][t]   ###对每个query，对30个demo组合取平均，体现query-conditioned
-                    # log_dict[f'{args.model}']['few_shot_avg_acc']=pa_results["unperturbed_few_shot_accuracy"]                #####对所有query取平均，体现prompt本身的能力
-                    # log_dict[f'{args.model}']['few_shot_perturbed_avg_acc']=pa_results["perturbed_few_shot_accuracy"]        #####对所有query取平均，体现prompt本身的能力
-                    # log_dict[f'{args.model}']['few_shot_demo_selectional_sensitivity']=pa_results["few_shot_demo_selectional_sensitivity"]   ###每种demo组合对所有query计算acc，对demo组合计算方差
-                    # log_dict[f'{args.model}']['few_shot_query_sensitivity']=pa_results["few_shot_query_sensitivity"]         ###每个query对所有demo计算acc，对query计算方差（log_dict['few_shot_accuracy']对所有query的方差）
-                    # log_dict[f'{args.model}']['few_shot_demo_permutational_sensitivity']=ps_results["permutational_sensitivity"]             ###每种demo顺序对所有query计算acc，对demo顺序计算方差，对demo组合取平均
                 offline_dataset.append(log_dict)
-    save_dic={'query':q,'generated_prompt':p}
-    with open('collect_round2_seed0.json','w') as file:
-        json.dump(save_dic,file,indent=2)
-    exit()
-    file_name=f'data_ablation_data_quality/{args.task}/{args.task}_{args.target_model}_{args.data_component}_round{args.round}_collected_{args.metric}_seed{args.seed}.json'    
+
+    file_name=f'data/{args.task}/{args.task}_{args.target_model}_{args.data_component}_round{args.round}_collected_{args.metric}_seed{args.seed}.json'    
     with open(file_name, "w", encoding='utf-8') as f:
         json.dump(offline_dataset, f, ensure_ascii=False, indent=2)   
         #f.write("\n")  
