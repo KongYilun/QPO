@@ -10,7 +10,6 @@ pip install -r requirements.txt --no-deps
 ```
 
 ## Usage
-We provide our collected IMDB-zero-shot dataset for code validation. Due to file size constraints, we did not upload all datasets. All datasets will be open-sourced when the code is open-sourced.
 
 1. Download our [offline dataset](https://drive.google.com/drive/folders/1QkURo3dNUiyh2pIzrLKLSNDfKwyKrXXB?usp=sharing) and save it to Path /data .
 2. Download the task NLP dataset and save it to Path /evaluation/nlp_dataset/ or change the code in /evaluation/nlp_data/{ag_news}.py for example.
